@@ -12,7 +12,7 @@ describe('Test GET /launches', () => {
     })
 
     test('It should response with 200 success', async () => {
-        const response = await request(app).get('/launches')
+        const response = await request(app).get('/v1/launches')
             .expect('Content-Type', /json/)
             ;
         const statusCode = response.statusCode
@@ -33,7 +33,7 @@ describe('Test POST /launches', () => {
 
     test('It should respond with 200 success', async () => {
         const response = await request(app)
-            .post("/launches")
+            .post("/v1/launches")
             .send({
                 "mission": "ZTMadada155",
                 "rocket": "ZTM Experimental IS1",
@@ -50,7 +50,7 @@ describe('Test POST /launches', () => {
 
     test('It should catch missing required properties', async () => {
         const response = await request(app)
-            .post("/launches")
+            .post("/v1/launches")
             .send({
                 mission: 'USS Enterprise',
                 rocket: "NCC 1701-D",
@@ -65,7 +65,7 @@ describe('Test POST /launches', () => {
 
     test('It should catch invalid dates', async () => {
         const response = await request(app)
-            .post("/launches")
+            .post("/v1/launches")
             .send({
                 mission: 'USS Enterprise',
                 rocket: "NCC 1701-D",
@@ -94,7 +94,7 @@ describe("Test Delete launches", () => {
     test('Test to successfully abort launch', async () => {
         const flightNumber = 101;
         const response = await request(app)
-            .delete(`/launches/${flightNumber}`)
+            .delete(`/v1/launches/${flightNumber}`)
             .expect('Content-Type', /json/);
         const statusCode = response.statusCode;
         expect(statusCode).toBe(200);
@@ -105,7 +105,7 @@ describe("Test Delete launches", () => {
     test('test to unsuccessfully abort launch', async () => {
         const flightNumber = 2000;
         const response = await request(app)
-            .delete(`/launches/${flightNumber}`)
+            .delete(`/v1/launches/${flightNumber}`)
             .expect('Content-Type', /json/);
         console.log(response.body)
         const statusCode = response.statusCode;

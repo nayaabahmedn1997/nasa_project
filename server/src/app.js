@@ -15,8 +15,8 @@ app.use(express.static(publicPath));
 app.use(moragn('combined'));
 
 //Routers
-app.use("/planets", planetsRouter);
-app.use("/launches", launchesRouter);
+app.use("/v1/planets", planetsRouter);
+app.use("/v1/launches", launchesRouter);
 // 1. Correctly handle specific API routes first
 app.get('/api/users', (req, res) => {
     res.json({ users: ['user1', 'user2'] });
