@@ -5,14 +5,15 @@ async function httpGetPlanets() {
   // Load planets and return as JSON.
   const response = await fetch(`${API_URL}/planets`);
   const data = await response.json();
-  console.log(data)
-  return data.planets;
+
+  return data;
 }
 
 async function httpGetLaunches() {
   // TODO: Once API is ready.
   // Load launches, sort by flight number, and return as JSON.
   const response = await fetch(`${API_URL}/launches`);
+  console.log(response)
   const data = await response.json();
   const sortedData = data.sort((a, b) => a.flightNumber - b.flightNumber)
   return sortedData;
