@@ -42,3 +42,15 @@ jobs:
       - name: Run server tests
         run: npm test
         working-directory: ./server
+      
+      # Step 5: Run Server Tests (The critical step for MONGO_URI)
+      - name: Run server tests
+        run: npm test
+        working-directory: ./server
+        # SECURE INJECTION: This block injects the secret.
+        env:
+          # The key on the left is the environment variable your server code reads 
+          # (i.e., process.env.MONGO_URI).
+          # The value on the right references the secret you created in GitHub Settings.
+          MONGO_URI: ${{ secrets.MONGO_URI }} 
+          MONGO_URL: ${{ secrets.MONGO_URL }} 

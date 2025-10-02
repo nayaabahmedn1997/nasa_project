@@ -20,7 +20,7 @@ const startServer = async () => {
 startServer();
 
 
-console.log(`Server is listening on port ${PORT}`);
+
 server.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
 });
