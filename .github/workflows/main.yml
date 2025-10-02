@@ -8,21 +8,27 @@ on:
 
 jobs:
   build: 
-    runs-on: windows-latest
+    # Use 'windows-latest' to match your command syntax (set BUILD_PATH=...)
+    runs-on: windows-latest 
     steps:
-      - uses: actions/checkout@v2 # Step 1: Checks out your code
+      - uses: actions/checkout@v2
         name: Checkout repository
         
-      # Step 2: Correctly sets up Node.js version 20
+      # Step 1: Correctly sets up Node.js version 20
       - name: Use Node.js version 20
         uses: actions/setup-node@v2
         with:
           node-version: '20'
           
-      # Step 3: Runs the install command (was missing 'run:')
-      - name: Install dependencies
+      # Step 2: Install dependencies in the 'client' subdirectory
+      - name: Install client dependencies
         run: npm install 
+        # ADDED: This tells the action runner to execute the command inside the 'client' folder.
+        working-directory: ./client 
         
-      # Step 4: Runs the build command
+      # Step 3: Runs the build command in the 'client' subdirectory
       - name: Build client application
-        run: npm run build --prefix client
+        # You no longer need `--prefix client` here because of the working-directory setting
+        run: npm run build
+        # ADDED: This ensures the 'npm run build' command finds the local 'react-scripts'
+        working-directory: ./client
