@@ -36,17 +36,11 @@ jobs:
       - name: Install server dependencies
         run: npm install
         working-directory: ./server
-        
-      # 4. Run Server Tests
-      # Assuming your 'server/package.json' has a script named "test"
-      - name: Run server tests
-        run: npm test
-        working-directory: ./server
       
       # Step 5: Run Server Tests (The critical step for MONGO_URI)
-      - name: Run server tests
+      - name: Run server  and client tests
         run: npm test
-        working-directory: ./server
+        # working-directory: ./server
         # SECURE INJECTION: This block injects the secret.
         env:
           # The key on the left is the environment variable your server code reads 
