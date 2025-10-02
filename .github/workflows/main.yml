@@ -10,8 +10,8 @@ jobs:
   build:
     env:
       CI: true
-      MONGO_URL: mongodb://localhost/nasa
-      MONGO_URI: mongodb://localhost/nasa
+      MONGO_URL: ${{ secrets.MONGO_URI }}
+      MONGO_URI: ${{ secrets.MONGO_URL }}
       PORT: 8000
     strategy:
       matrix:
