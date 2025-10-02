@@ -32,3 +32,13 @@ jobs:
         run: npm run build
         # ADDED: This ensures the 'npm run build' command finds the local 'react-scripts'
         working-directory: ./client
+      # 3. Install Server Dependencies (Assuming a 'server/package.json' exists)
+      - name: Install server dependencies
+        run: npm install
+        working-directory: ./server
+        
+      # 4. Run Server Tests
+      # Assuming your 'server/package.json' has a script named "test"
+      - name: Run server tests
+        run: npm test
+        working-directory: ./server
